@@ -238,7 +238,7 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
       <CalPopup
         open={showCalPopup}
         onOpenChange={setShowCalPopup}
-        calLink="filip-cernik/demobuild"
+        calLink="filip-cernik/quick-explanation"
       />
     </Dialog>
   )
