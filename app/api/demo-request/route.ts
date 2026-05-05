@@ -1,10 +1,10 @@
+import { createClient } from "@supabase/supabase-js"
 import { NextRequest, NextResponse } from "next/server"
-import nodemailer from "nodemailer"
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { fullName, role, email, website, source, message, agreeTerms } = body
+    const { fullName, company, email, website, requirements, agreeTerms } = body
 
     // Validate required fields
     if (!fullName || !email || !agreeTerms) {
@@ -14,24 +14,38 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // For now, just log the data and send a success response
-    // In production, you'd send an actual email here
-    console.log("Demo request received:", {
-      fullName,
-      role,
-      email,
-      website,
-      source,
-      message,
-      timestamp: new Date().toISOString(),
-    })
+    // Create Supabase client
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL || "",
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""
+    )
 
-    // TODO: Configure nodemailer with your email service
-    // const transporter = nodemailer.createTransport({...})
-    // await transporter.sendMail({...})
+    // Insert into "ai recepton" table
+    const { data, error } = await supabase
+      .from("ai recepton")
+      .insert([
+        {
+          full_name: fullName,
+          company_name: company,
+          work_email: email,
+          business_website: website,
+          specific_requirements: requirements,
+        },
+      ])
+      .select()
+
+    if (error) {
+      console.error("Supabase error:", error)
+      return NextResponse.json(
+        { error: "Failed to save demo request" },
+        { status: 500 }
+      )
+    }
+
+    console.log("Demo request saved to Supabase:", data)
 
     return NextResponse.json(
-      { message: "Demo request submitted successfully" },
+      { message: "Demo request submitted successfully", data },
       { status: 200 }
     )
   } catch (error) {
