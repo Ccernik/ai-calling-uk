@@ -4,11 +4,11 @@ import { useState } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { ArrowRight } from "lucide-react"
+import { CalPopup } from "@/components/cal-popup"
 
 interface DemoModalProps {
   open: boolean
@@ -26,6 +26,7 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [showCalPopup, setShowCalPopup] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -113,19 +114,7 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
               We've received your AI calling assistant setup request. Let's schedule a call to configure your system.
             </p>
             <Button
-              onClick={() => {
-                window.open("https://cal.com/filip-cernik/demobuild", "_blank")
-                onOpenChange(false)
-                setSubmitted(false)
-                setFormData({
-                  fullName: "",
-                  company: "",
-                  email: "",
-                  website: "",
-                  requirements: "",
-                  agreeTerms: false,
-                })
-              }}
+              onClick={() => setShowCalPopup(true)}
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg inline-flex items-center gap-2"
             >
               Schedule a Call
@@ -245,6 +234,12 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
           </form>
         )}
       </DialogContent>
+
+      <CalPopup
+        open={showCalPopup}
+        onOpenChange={setShowCalPopup}
+        calLink="filip-cernik/demobuild"
+      />
     </Dialog>
   )
 }
