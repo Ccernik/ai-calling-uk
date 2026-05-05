@@ -32,9 +32,7 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSelectChange = (value: string) => {
-    setFormData((prev) => ({ ...prev, industry: value }))
-  }
+
 
   const handleCheckboxChange = (checked: boolean) => {
     setFormData((prev) => ({ ...prev, agreeTerms: checked }))
@@ -67,9 +65,7 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
             fullName: "",
             company: "",
             email: "",
-            phone: "",
-            industry: "",
-            useCase: "",
+            website: "",
             requirements: "",
             agreeTerms: false,
           })
