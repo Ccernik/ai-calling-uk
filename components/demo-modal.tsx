@@ -8,7 +8,6 @@ import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { ArrowRight } from "lucide-react"
-import { CalPopup } from "@/components/cal-popup"
 
 interface DemoModalProps {
   open: boolean
@@ -26,7 +25,6 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-  const [showCalPopup, setShowCalPopup] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -114,7 +112,7 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
               We've received your AI calling assistant setup request. Let's schedule a call to configure your system.
             </p>
             <Button
-              onClick={() => setShowCalPopup(true)}
+              onClick={() => window.open("https://cal.com/filip-cernik/quick-explanation", "_blank")}
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg inline-flex items-center gap-2"
             >
               Schedule a Call
@@ -234,12 +232,6 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
           </form>
         )}
       </DialogContent>
-
-      <CalPopup
-        open={showCalPopup}
-        onOpenChange={setShowCalPopup}
-        calLink="filip-cernik/quick-explanation"
-      />
     </Dialog>
   )
 }
