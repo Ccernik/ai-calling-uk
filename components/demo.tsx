@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Phone, PhoneOff, Mic, MicOff, Volume2, AlertCircle } from "lucide-react"
 
 const VAPI_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY || ""
-const ASSISTANT_ID = process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY || ""
+const ASSISTANT_ID = process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID || ""
 
 type CallStatus = "idle" | "loading-sdk" | "connecting" | "active" | "error"
 
