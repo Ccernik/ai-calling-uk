@@ -7,9 +7,6 @@ import { Phone, PhoneOff, Mic, MicOff, Volume2, AlertCircle } from "lucide-react
 const VAPI_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY || ""
 const ASSISTANT_ID = process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID || ""
 
-console.log("[v0] VAPI_PUBLIC_KEY:", VAPI_PUBLIC_KEY ? "✓ Set" : "✗ Missing")
-console.log("[v0] ASSISTANT_ID:", ASSISTANT_ID ? "✓ Set" : "✗ Missing")
-
 type CallStatus = "idle" | "loading-sdk" | "connecting" | "active" | "error"
 
 export function Demo() {
@@ -49,13 +46,9 @@ export function Demo() {
       })
 
       vapiInstance.on("error", (error: { error?: { message?: string } }) => {
+        console.error("[v0] Vapi error:", error)
         const message = error?.error?.message || "Failed to connect to AI receptionist"
-        
-        if (message.includes("Failed to fetch") || message.includes("network")) {
-          setErrorMessage("Demo requires internet access. This works on the live website. Contact us for a live demo.")
-        } else {
-          setErrorMessage(message)
-        }
+        setErrorMessage(message)
         setCallStatus("error")
         vapiRef.current = null
       })
@@ -63,7 +56,9 @@ export function Demo() {
       setCallStatus("connecting")
       await vapiInstance.start(ASSISTANT_ID)
     } catch (error) {
-      setErrorMessage("Demo requires internet access. This works on the live website. Contact us for a live demo.")
+      console.error("[v0] Failed to start call:", error)
+      const errorMsg = error instanceof Error ? error.message : "Failed to initialize Vapi SDK"
+      setErrorMessage(errorMsg)
       setCallStatus("error")
     }
   }, [])
