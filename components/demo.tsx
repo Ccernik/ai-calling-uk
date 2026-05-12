@@ -7,6 +7,9 @@ import { Phone, PhoneOff, Mic, MicOff, Volume2, AlertCircle } from "lucide-react
 const VAPI_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY || ""
 const ASSISTANT_ID = process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID || ""
 
+console.log("[v0] VAPI_PUBLIC_KEY:", VAPI_PUBLIC_KEY ? "✓ Set" : "✗ Missing")
+console.log("[v0] ASSISTANT_ID:", ASSISTANT_ID ? "✓ Set" : "✗ Missing")
+
 type CallStatus = "idle" | "loading-sdk" | "connecting" | "active" | "error"
 
 export function Demo() {
