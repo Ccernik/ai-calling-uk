@@ -11,7 +11,7 @@ export function VapiCallButton() {
 
   // Initialize Vapi on mount
   useEffect(() => {
-    vapiRef.current = new Vapi("16640049-abcd-470c-9fa5-305314f2771f")
+    vapiRef.current = new Vapi("0f65379c-c211-4c50-9b6c-3cd705d1de34")
 
     // Handle call events
     vapiRef.current.on("call-start", () => {
@@ -42,7 +42,7 @@ export function VapiCallButton() {
 
     try {
       setIsLoading(true)
-      await vapiRef.current.start("0f65379c-c211-4c50-9b6c-3cd705d1de34")
+      await vapiRef.current.start("16640049-abcd-470c-9fa5-305314f2771f")
     } catch (error) {
       console.error("[v0] Failed to start call:", error)
       setIsLoading(false)
