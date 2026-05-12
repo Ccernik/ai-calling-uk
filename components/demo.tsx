@@ -45,9 +45,22 @@ export function Demo() {
         setVolumeLevel(level)
       })
 
-      vapiInstance.on("error", (error: { error?: { message?: string } }) => {
-        console.error("[v0] Vapi error:", error)
-        const message = error?.error?.message || "Failed to connect to AI receptionist"
+      vapiInstance.on("error", (error: any) => {
+        console.error("[v0] Vapi error details:", error)
+        let message = "Failed to connect to AI receptionist"
+        
+        // Extract error message from various error formats
+        if (typeof error === "string") {
+          message = error
+        } else if (error?.message) {
+          message = error.message
+        } else if (error?.error?.message) {
+          message = error.error.message
+        } else if (error?.error?.statusCode === 400) {
+          message = "Invalid Vapi configuration (400). Check your Assistant ID and Public Key."
+        }
+        
+        console.error("[v0] Extracted error message:", message)
         setErrorMessage(message)
         setCallStatus("error")
         vapiRef.current = null
@@ -57,7 +70,21 @@ export function Demo() {
       await vapiInstance.start(ASSISTANT_ID)
     } catch (error) {
       console.error("[v0] Failed to start call:", error)
-      const errorMsg = error instanceof Error ? error.message : "Failed to initialize Vapi SDK"
+      let errorMsg = "Failed to initialize Vapi SDK"
+      
+      if (error instanceof Error) {
+        errorMsg = error.message
+      } else if (typeof error === "string") {
+        errorMsg = error
+      }
+      
+      if (!ASSISTANT_ID) {
+        errorMsg = "Assistant ID not configured"
+      } else if (!VAPI_PUBLIC_KEY) {
+        errorMsg = "VAPI public key not configured"
+      }
+      
+      console.error("[v0] Final error message:", errorMsg)
       setErrorMessage(errorMsg)
       setCallStatus("error")
     }
