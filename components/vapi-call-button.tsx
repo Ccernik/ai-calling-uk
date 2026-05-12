@@ -94,11 +94,11 @@ export function VapiCallButton() {
   }
 
   return (
-    <div className="w-full max-w-2xl">
+    <div className="w-full max-w-3xl mx-auto">
       {isCallActive ? (
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-[600px]">
           {/* Header - Call Status */}
-          <div className="bg-gradient-to-r from-green-50 to-green-100 px-6 py-4 border-b border-green-200">
+          <div className="bg-gradient-to-r from-green-50 to-green-100 px-6 py-5 border-b border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">Call in Progress</h3>
@@ -109,18 +109,18 @@ export function VapiCallButton() {
               </div>
               <button
                 onClick={endCall}
-                className="flex items-center justify-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-all"
+                className="flex-shrink-0 w-12 h-12 rounded-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center transition-all shadow-md hover:shadow-lg"
+                aria-label="End Call"
               >
-                <PhoneOff className="h-5 w-5" />
-                End Call
+                <PhoneOff className="h-6 w-6" />
               </button>
             </div>
           </div>
 
-          {/* Conversation Area */}
-          <div className="h-96 overflow-y-auto bg-gray-50 p-6 flex flex-col">
+          {/* Conversation Area - Fixed height to prevent scrolling issues */}
+          <div className="flex-1 overflow-y-auto bg-white p-6">
             {messages.length === 0 && (
-              <div className="flex-1 flex items-center justify-center text-center">
+              <div className="h-full flex items-center justify-center text-center">
                 <div>
                   <p className="text-gray-500 mb-2">Listening...</p>
                   <p className="text-sm text-gray-400">Start speaking to begin the conversation</p>
@@ -128,50 +128,51 @@ export function VapiCallButton() {
               </div>
             )}
 
-            {messages.map((message, index) => (
-              <div key={index} className={`mb-4 flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
-                <div
-                  className={`max-w-xs px-4 py-2 rounded-lg ${
-                    message.role === "user"
-                      ? "bg-blue-600 text-white rounded-br-none"
-                      : "bg-gray-200 text-gray-900 rounded-bl-none"
-                  }`}
-                >
-                  <p className="text-sm">{message.text}</p>
-                  <p className={`text-xs mt-1 ${message.role === "user" ? "text-blue-100" : "text-gray-500"}`}>
-                    {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-                  </p>
+            <div className="space-y-3">
+              {messages.map((message, index) => (
+                <div key={index} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
+                  <div
+                    className={`max-w-xs px-4 py-2 rounded-lg ${
+                      message.role === "user"
+                        ? "bg-blue-600 text-white rounded-br-none"
+                        : "bg-gray-100 text-gray-900 rounded-bl-none"
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className={`text-xs mt-1 opacity-70`}>
+                      {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Footer Info */}
-          <div className="bg-white px-6 py-3 border-t border-gray-200 text-center text-xs text-gray-600">
+          {/* Footer Info - Fixed at bottom */}
+          <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 text-center text-xs text-gray-600">
             <p>Your conversation is being transcribed in real-time</p>
           </div>
         </div>
       ) : (
-        <button
-          onClick={startCall}
-          disabled={isLoading}
-          className={`w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold text-lg transition-all ${
-            "bg-blue-600 hover:bg-blue-700 text-white"
-          } disabled:opacity-50 disabled:cursor-not-allowed`}
-        >
-          {isLoading ? (
-            <>
-              <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              Connecting...
-            </>
-          ) : (
-            <>
-              <Phone className="h-5 w-5" />
-              Start Call
-            </>
-          )}
-        </button>
+        <div className="flex flex-col items-center">
+          <button
+            onClick={startCall}
+            disabled={isLoading}
+            className="flex flex-col items-center gap-4 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <div className="w-24 h-24 rounded-full border-2 border-gray-300 flex items-center justify-center hover:border-blue-600 hover:bg-blue-50 transition-all">
+              {isLoading ? (
+                <div className="h-8 w-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <Phone className="h-10 w-10 text-gray-700" />
+              )}
+            </div>
+            <span className="text-lg font-semibold text-gray-900">
+              {isLoading ? "Connecting..." : "Start call"}
+            </span>
+          </button>
+        </div>
       )}
     </div>
   )
