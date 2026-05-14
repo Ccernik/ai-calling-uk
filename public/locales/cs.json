@@ -1,0 +1,149 @@
+{
+  "nav": {
+    "home": "Domů",
+    "features": "Vlastnosti",
+    "demo": "Demo",
+    "services": "Služby",
+    "pricing": "Ceny",
+    "faq": "Často kladené otázky",
+    "contact": "Kontakt",
+    "getAI": "Získat AI"
+  },
+  "hero": {
+    "headline": "AI-Napájený asistent pro telefonní hovory vaší firmy",
+    "description": "Transformujte zákaznický servis s inteligentnými hlasovými interakcemi. ReAI zpracovává příchozí a odchozí hovory s přirozeným porozuměním jazyku.",
+    "ctaPrimary": "Spustit Demo",
+    "ctaSecondary": "Více informací"
+  },
+  "features": {
+    "title": "Výkonné funkce",
+    "description": "Vše, co potřebujete pro inteligentní zpracování hovorů",
+    "naturalLanguage": {
+      "title": "Zpracování přirozeného jazyka",
+      "description": "Rozumí kontextu a nuancím v zákaznických rozhovorech"
+    },
+    "24_7": {
+      "title": "Dostupnost 24/7",
+      "description": "Vždy dostupné pro zpracování zákaznických hovorů"
+    },
+    "integration": {
+      "title": "Snadná integrace",
+      "description": "Bezproblémově se integruje s vašimi stávajícími systémy"
+    },
+    "analytics": {
+      "title": "Analýza hovorů",
+      "description": "Sledujte a analyzujte každý hovor s podrobnými informacemi"
+    },
+    "customization": {
+      "title": "Plné přizpůsobení",
+      "description": "Přizpůsobte odpovědi a chování pro vaše obchodní potřeby"
+    },
+    "security": {
+      "title": "Podniková bezpečnost",
+      "description": "Šifrování na úrovni banky a ochrana dat"
+    }
+  },
+  "stats": {
+    "calls": "Zpracovaných hovorů",
+    "customers": "Spokojených zákazníků",
+    "uptime": "Dostupnost",
+    "languages": "Podporovaných jazyků"
+  },
+  "demo": {
+    "title": "Vyzkoušejte ReAI v akci",
+    "description": "Zavolejte ReAI přímo z prohlížeče a vyzkoušejte, jak zpracovává restaurační hovory. Mluvte s AI recepčním a vidět rozdíl.",
+    "tryCall": "Vyzkoušejte AI recepčního",
+    "startDemo": "Spustit hovor",
+    "endCall": "Ukončit hovor",
+    "callInProgress": "Hovor probíhá",
+    "connected": "Připojeno k AI recepčnímu",
+    "listening": "Poslouchám...",
+    "startSpeaking": "Začněte mluvit pro zahájení rozhovoru",
+    "transcribing": "Váš rozhovor se přepisuje v reálném čase"
+  },
+  "webServices": {
+    "title": "Služby tvorby webových stránek",
+    "description": "Vývoj webu přizpůsobený vašim obchodním potřebám",
+    "features": {
+      "customDesign": "Vlastní webový design",
+      "responsive": "Responzivní vývoj",
+      "performance": "Optimalizace výkonu",
+      "seo": "Integrace SEO",
+      "cms": "Řešení CMS",
+      "support": "Průběžná podpora"
+    },
+    "process": {
+      "discovery": "Analýza",
+      "design": "Návrh",
+      "development": "Vývoj",
+      "testing": "Testování",
+      "launch": "Spuštění",
+      "support": "Podpora"
+    },
+    "cta1": "Začít projekt",
+    "cta2": "Více informací"
+  },
+  "pricing": {
+    "title": "Jednoduché a přehledné ceny",
+    "description": "Vyberte si ideální plán pro vaši firmu",
+    "monthly": "Měsíčně",
+    "yearly": "Ročně",
+    "save": "Ušetřete 20%",
+    "starter": "Začínající",
+    "pro": "Pro",
+    "enterprise": "Podnik",
+    "getStarted": "Začít",
+    "contactSales": "Kontaktovat prodej",
+    "features": "Zahrnuté funkce"
+  },
+  "faq": {
+    "title": "Často kladené otázky",
+    "description": "Vše, co potřebujete vědět o ReAI",
+    "q1": "Jak ReAI rozumí potřebám zákazníků?",
+    "a1": "ReAI používá pokročilé NLP k porozumění kontextu a záměru, což umožňuje přirozené rozhovory.",
+    "q2": "Může se ReAI integrovat s mými stávajícími systémy?",
+    "a2": "Ano, ReAI se integruje s většinou obchodních systémů prostřednictvím našeho komplexního API.",
+    "q3": "Jaký je čas nastavení?",
+    "a3": "Typické nastavení trvá 24-48 hodin od počátečné konfigurace.",
+    "q4": "Nabízíte zákaznickou podporu?",
+    "a4": "Ano, poskytujeme 24/7 podporu pro všechny podnikové zákazníky."
+  },
+  "contact": {
+    "title": "Kontaktujte nás",
+    "description": "Máte otázky? Rádi bychom od vás slyšeli.",
+    "email": "E-mail",
+    "phone": "Telefon",
+    "address": "Adresa",
+    "message": "Pošlete nám zprávu",
+    "name": "Vaše jméno",
+    "subject": "Předmět",
+    "messagePlaceholder": "Vaše zpráva...",
+    "send": "Poslat zprávu"
+  },
+  "modal": {
+    "title": "Vyzkoušejte AI asistenta pro hovory",
+    "description": "Nastavte si svého AI asistenta pro zpracování zákaznických hovorů s intelencí a efektivností.",
+    "fullName": "Celé jméno",
+    "company": "Název firmy",
+    "email": "Pracovní e-mail",
+    "website": "Webové stránky firmy",
+    "requirements": "Specifické požadavky",
+    "agree": "Souhlasím s Podmínkami služby a Zásadami ochrany osobních údajů ReAI",
+    "submit": "Nastavit AI asistenta pro hovory",
+    "success": "Děkujeme!",
+    "successMsg": "Obdrželi jsme váš požadavek na nastavení AI asistenta pro hovory. Pojďme naplánovat hovor pro konfiguraci vašeho systému.",
+    "scheduleCall": "Naplánovat hovor",
+    "exitConfirm": "Chcete odejít bez naplánování?",
+    "exitMsg": "Ještě jste nedokončili nastavení svého AI asistenta pro hovory. Vaše data formuláře budou ztracena, pokud nyní odejdete.",
+    "continueFilling": "Pokračovat ve vyplňování formuláře",
+    "leaveAnyway": "Odejít"
+  },
+  "common": {
+    "required": "Povinné pole",
+    "close": "Zavřít",
+    "back": "Zpět",
+    "next": "Další",
+    "submit": "Odeslat",
+    "cancel": "Zrušit"
+  }
+}

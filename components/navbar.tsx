@@ -6,6 +6,7 @@ import { Menu, X, Phone } from "lucide-react"
 import { useState } from "react"
 import { useDemoModal } from "@/components/demo-context"
 import { useSwipeNavigation } from "@/hooks/use-swipe-navigation"
+import { LanguageSwitcher } from "@/components/language-switcher"
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -46,7 +47,8 @@ export function Navbar() {
           </Link>
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-4">
+          <LanguageSwitcher />
           <Button 
             size="sm" 
             className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-6"
@@ -99,6 +101,7 @@ export function Navbar() {
               Contact
             </Link>
             <div className="flex flex-col gap-2 pt-4 mt-2 border-t border-gray-200">
+              <LanguageSwitcher />
               <Button 
                 size="sm" 
                 className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg"
