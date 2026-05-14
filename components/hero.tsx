@@ -3,6 +3,10 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { useDemoModal } from "@/components/demo-context"
+
+export function Hero() {
+  const { setDemoModalOpen } = useDemoModal()
+
   return (
     <section className="relative min-h-screen flex items-center bg-white overflow-hidden">
       {/* Animated background shapes */}
