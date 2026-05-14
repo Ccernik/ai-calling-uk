@@ -10,6 +10,7 @@ import { Demo } from "@/components/demo"
 import { FAQ } from "@/components/faq"
 import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
+import { WebsiteServices } from "@/components/website-services"
 import { DemoModal } from "@/components/demo-modal"
 import { DemoProvider } from "@/components/demo-context"
 
@@ -25,6 +26,7 @@ export default function Home() {
           <Features />
           <Stats />
           <Demo />
+          <WebsiteServices />
           <Pricing />
           <FAQ />
           <Contact />
