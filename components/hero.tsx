@@ -4,10 +4,16 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { useDemoModal } from "@/components/demo-context"
 import { useLanguage } from "@/lib/language-context"
+import { useEffect, useState } from "react"
 
 export function Hero() {
   const { setDemoModalOpen } = useDemoModal()
   const { t } = useLanguage()
+  const [isHydrated, setIsHydrated] = useState(false)
+
+  useEffect(() => {
+    setIsHydrated(true)
+  }, [])
   return (
     <section className="relative min-h-screen flex items-center bg-white overflow-hidden">
       {/* Animated background shapes */}
@@ -52,12 +58,12 @@ export function Hero() {
             
             {/* Main Headline */}
             <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold leading-tight text-gray-900">
-              {t("hero.headline")}
+              {isHydrated ? t("hero.headline") : "Never miss a call. Ever."}
             </h1>
             
             {/* Subheadline */}
             <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
-              {t("hero.description")}
+              {isHydrated ? t("hero.description") : "Your restaurant stays connected. Calls answered instantly. Reservations booked automatically. Guests never hear a busy signal."}
             </p>
             
             {/* Key points */}
@@ -89,7 +95,7 @@ export function Hero() {
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold text-base"
                 onClick={() => setDemoModalOpen(true)}
               >
-                {t("hero.ctaPrimary")}
+                {isHydrated ? t("hero.ctaPrimary") : "Get free demo"}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
               <Button 
@@ -97,7 +103,7 @@ export function Hero() {
                 className="bg-white border-2 border-gray-300 hover:border-gray-400 text-gray-900 px-8 py-3 rounded-lg font-semibold text-base transition-all duration-300"
                 asChild
               >
-                <a href="#demo">{t("hero.ctaSecondary")}</a>
+                <a href="#demo">{isHydrated ? t("hero.ctaSecondary") : "Try AI receptionist"}</a>
               </Button>
             </div>
           </div>
