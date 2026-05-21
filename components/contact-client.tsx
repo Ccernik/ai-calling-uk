@@ -1,13 +1,20 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Mail, MapPin, ArrowRight, Check } from "lucide-react"
 import { useDemoModal } from "@/components/demo-context"
+import { useLanguage } from "@/lib/language-context"
 
 export function ContactClient() {
   const { setDemoModalOpen } = useDemoModal()
+  const { t } = useLanguage()
+  const [isHydrated, setIsHydrated] = useState(false)
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null)
+
+  useEffect(() => {
+    setIsHydrated(true)
+  }, [])
 
   const copyToClipboard = (email: string) => {
     navigator.clipboard.writeText(email)
@@ -23,10 +30,10 @@ export function ContactClient() {
             {/* Left side - CTA */}
             <div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900">
-                Seeing is believing. Experience it live.
+                {isHydrated ? t("contact.title", "Seeing is believing. Experience it live.") : "Seeing is believing. Experience it live."}
               </h2>
               <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-                Get in touch with us — we'll show you how ReAI works for your restaurant in minutes.
+                {isHydrated ? t("contact.description", "Get in touch with us — we'll show you how ReAI works for your restaurant in minutes.") : "Get in touch with us — we'll show you how ReAI works for your restaurant in minutes."}
               </p>
               <div className="mt-8">
                 <Button 
@@ -34,7 +41,7 @@ export function ContactClient() {
                   className="text-base px-8 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold"
                   onClick={() => setDemoModalOpen(true)}
                 >
-                  Get free demo
+                  {isHydrated ? t("contact.cta", "Get free demo") : "Get free demo"}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </div>
@@ -54,7 +61,9 @@ export function ContactClient() {
                   )}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-gray-600">Email</p>
+                  <p className="text-sm font-semibold text-gray-600">
+                    {isHydrated ? t("contact.email", "Email") : "Email"}
+                  </p>
                   <p className="font-medium text-gray-900">cernikfilipcz@gmail.com</p>
                 </div>
               </button>
@@ -71,7 +80,9 @@ export function ContactClient() {
                   )}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-gray-600">Email</p>
+                  <p className="text-sm font-semibold text-gray-600">
+                    {isHydrated ? t("contact.email", "Email") : "Email"}
+                  </p>
                   <p className="font-medium text-gray-900">vojdus10@gmail.com</p>
                 </div>
               </button>
@@ -81,7 +92,9 @@ export function ContactClient() {
                   <MapPin className="h-5 w-5 text-blue-600" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-gray-600">Location</p>
+                  <p className="text-sm font-semibold text-gray-600">
+                    {isHydrated ? t("contact.location", "Location") : "Location"}
+                  </p>
                   <p className="font-medium text-gray-900">Prague, Czech Republic</p>
                 </div>
               </div>

@@ -14,6 +14,9 @@ import { WebsiteServices } from "@/components/website-services"
 import { DemoModal } from "@/components/demo-modal"
 import { DemoProvider } from "@/components/demo-context"
 
+// Disable static generation for this page since it uses dynamic context
+export const dynamic = 'force-dynamic'
+
 export default function Home() {
   const [demoModalOpen, setDemoModalOpen] = useState(false)
 

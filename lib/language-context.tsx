@@ -73,7 +73,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, [translations])
 
   if (!isHydrated) {
-    return <>{children}</>
+    // Provide a default context during SSR/build
+    return (
+      <LanguageContext.Provider value={{ language: DEFAULT_LANGUAGE, setLanguage: () => {}, t: (_, defaultValue) => defaultValue || "", translations: {} }}>
+        {children}
+      </LanguageContext.Provider>
+    )
   }
 
   return (

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogTitle } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { ArrowRight, X } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 interface DemoModalProps {
   open: boolean
@@ -16,6 +17,13 @@ interface DemoModalProps {
 }
 
 export function DemoModal({ open, onOpenChange }: DemoModalProps) {
+  const { t } = useLanguage()
+  const [isHydrated, setIsHydrated] = useState(false)
+  
+  useEffect(() => {
+    setIsHydrated(true)
+  }, [])
+
   const [formData, setFormData] = useState({
     fullName: "",
     company: "",
@@ -119,10 +127,10 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
           <div className="flex items-center justify-between mb-6">
             <DialogHeader className="flex-1">
               <DialogTitle className="text-3xl font-bold text-gray-900">
-                Try AI Calling Assistant
+                {isHydrated ? t("modal.title", "Try AI Calling Assistant") : "Try AI Calling Assistant"}
               </DialogTitle>
               <p className="text-gray-600 mt-2">
-                Set up your AI-powered calling assistant to handle customer calls with intelligence and efficiency.
+                {isHydrated ? t("modal.description", "Set up your AI-powered calling assistant to handle customer calls with intelligence and efficiency.") : "Set up your AI-powered calling assistant to handle customer calls with intelligence and efficiency."}
               </p>
             </DialogHeader>
             <button
@@ -151,15 +159,17 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900">Thank you!</h3>
+              <h3 className="text-2xl font-bold text-gray-900">
+                {isHydrated ? t("modal.success", "Thank you!") : "Thank you!"}
+              </h3>
               <p className="mt-2 text-gray-600 mb-6">
-                We've received your AI calling assistant setup request. Let's schedule a call to configure your system.
+                {isHydrated ? t("modal.successMsg", "We've received your AI calling assistant setup request. Let's schedule a call to configure your system.") : "We've received your AI calling assistant setup request. Let's schedule a call to configure your system."}
               </p>
               <Button
                 onClick={handleScheduleCall}
                 className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg inline-flex items-center gap-2"
               >
-                Schedule a Call
+                {isHydrated ? t("modal.scheduleCall", "Schedule a Call") : "Schedule a Call"}
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
@@ -168,12 +178,12 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
               {/* Full Name */}
               <div>
                 <Label htmlFor="fullName" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Full Name <span className="text-blue-600">*</span>
+                  {isHydrated ? t("modal.fullName", "Full Name") : "Full Name"} <span className="text-blue-600">*</span>
                 </Label>
                 <Input
                   id="fullName"
                   name="fullName"
-                  placeholder="Enter your full name"
+                  placeholder={isHydrated ? t("modal.fullName", "Full Name") : "Enter your full name"}
                   value={formData.fullName}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition-colors"
@@ -184,12 +194,12 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
               {/* Company */}
               <div>
                 <Label htmlFor="company" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Company Name
+                  {isHydrated ? t("modal.company", "Company Name") : "Company Name"}
                 </Label>
                 <Input
                   id="company"
                   name="company"
-                  placeholder="Enter your company name"
+                  placeholder={isHydrated ? t("modal.company", "Company Name") : "Enter your company name"}
                   value={formData.company}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition-colors"
@@ -199,13 +209,13 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
               {/* Work Email */}
               <div>
                 <Label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Work Email <span className="text-blue-600">*</span>
+                  {isHydrated ? t("modal.email", "Work Email") : "Work Email"} <span className="text-blue-600">*</span>
                 </Label>
                 <Input
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="Enter your work email"
+                  placeholder={isHydrated ? t("modal.email", "Work Email") : "Enter your work email"}
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition-colors"
@@ -216,7 +226,7 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
               {/* Business Website */}
               <div>
                 <Label htmlFor="website" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Business Website
+                  {isHydrated ? t("modal.website", "Business Website") : "Business Website"}
                 </Label>
                 <Input
                   id="website"
@@ -232,12 +242,12 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
               {/* Requirements */}
               <div>
                 <Label htmlFor="requirements" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Specific Requirements
+                  {isHydrated ? t("modal.requirements", "Specific Requirements") : "Specific Requirements"}
                 </Label>
                 <Textarea
                   id="requirements"
                   name="requirements"
-                  placeholder="Any specific features or requirements for your AI calling assistant..."
+                  placeholder={isHydrated ? t("modal.requirements", "Specific Requirements") : "Any specific features or requirements for your AI calling assistant..."}
                   value={formData.requirements}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition-colors min-h-24 resize-none"
@@ -254,13 +264,13 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
                   aria-label="Agree to terms and privacy policy"
                 />
                 <Label htmlFor="terms" className="text-sm text-gray-700 leading-relaxed cursor-pointer">
-                  I agree with ReAI's{" "}
+                  {isHydrated ? t("modal.agree", "I agree with ReAI's") : "I agree with ReAI's"}{" "}
                   <a href="#" className="font-semibold text-blue-600 hover:text-blue-700">
-                    Terms of Service
+                    {isHydrated ? t("common.terms", "Terms of Service") : "Terms of Service"}
                   </a>{" "}
-                  and{" "}
+                  {isHydrated ? t("modal.and", "and") : "and"}{" "}
                   <a href="#" className="font-semibold text-blue-600 hover:text-blue-700">
-                    Privacy Policy
+                    {isHydrated ? t("common.privacy", "Privacy Policy") : "Privacy Policy"}
                   </a>
                   <span className="text-blue-600"> *</span>
                 </Label>
@@ -272,7 +282,7 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
                 disabled={isSubmitting}
                 className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors disabled:opacity-50"
               >
-                {isSubmitting ? "Submitting..." : "Set Up AI Calling Assistant"}
+                {isSubmitting ? (isHydrated ? t("common.submitting", "Submitting...") : "Submitting...") : (isHydrated ? t("modal.submit", "Set Up AI Calling Assistant") : "Set Up AI Calling Assistant")}
               </Button>
             </form>
           )}
@@ -282,19 +292,21 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
       {/* Exit Confirmation Dialog */}
       <AlertDialog open={showExitConfirmation} onOpenChange={setShowExitConfirmation}>
         <AlertDialogContent>
-          <AlertDialogTitle>Leave without scheduling?</AlertDialogTitle>
+          <AlertDialogTitle>
+            {isHydrated ? t("modal.exitConfirm", "Leave without scheduling?") : "Leave without scheduling?"}
+          </AlertDialogTitle>
           <AlertDialogDescription>
-            You haven't finished setting up your AI calling assistant yet. Your form data will be lost if you leave now.
+            {isHydrated ? t("modal.exitMsg", "You haven't finished setting up your AI calling assistant yet. Your form data will be lost if you leave now.") : "You haven't finished setting up your AI calling assistant yet. Your form data will be lost if you leave now."}
           </AlertDialogDescription>
           <div className="flex gap-3 justify-end mt-6">
             <AlertDialogCancel className="rounded-lg border-gray-300 text-gray-900 hover:bg-gray-50">
-              Continue filling form
+              {isHydrated ? t("modal.continueFilling", "Continue filling form") : "Continue filling form"}
             </AlertDialogCancel>
             <AlertDialogAction 
               onClick={handleConfirmExit}
               className="rounded-lg bg-red-600 hover:bg-red-700 text-white"
             >
-              Leave anyway
+              {isHydrated ? t("modal.leaveAnyway", "Leave anyway") : "Leave anyway"}
             </AlertDialogAction>
           </div>
         </AlertDialogContent>

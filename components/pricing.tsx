@@ -1,16 +1,26 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Check } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
+import { useEffect, useState } from "react"
 
 export function Pricing() {
+  const { t } = useLanguage()
+  const [isHydrated, setIsHydrated] = useState(false)
+
+  useEffect(() => {
+    setIsHydrated(true)
+  }, [])
   return (
     <section id="cenik" className="py-24 md:py-32 bg-white">
       <div className="container mx-auto px-4 md:px-8">
         <div className="max-w-3xl mx-auto text-center mb-20">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900">
-            Simple, transparent pricing
+            {isHydrated ? t("pricing.title", "Simple, transparent pricing") : "Simple, transparent pricing"}
           </h2>
           <p className="mt-6 text-xl text-gray-600">
-            Pay only for what you use. No hidden fees.
+            {isHydrated ? t("pricing.description", "Pay only for what you use. No hidden fees.") : "Pay only for what you use. No hidden fees."}
           </p>
         </div>
 
@@ -55,17 +65,19 @@ export function Pricing() {
             </div>
 
             <div className="pt-8 border-t border-blue-200">
-              <p className="text-sm font-semibold text-gray-900 mb-6">What's included:</p>
+              <p className="text-sm font-semibold text-gray-900 mb-6">
+                {isHydrated ? t("pricing.features", "What's included:") : "What's included:"}
+              </p>
               <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-                {[
-                  "Unlimited calls",
-                  "Native English speaker",
-                  "24/7 availability",
-                  "System integration",
-                  "SMS confirmations",
-                  "Smart Q&A handling",
-                  "No long-term contracts",
-                  "Priority support"
+                {isHydrated && [
+                  t("features.customDesign", "Unlimited calls"),
+                  t("features.responsive", "Native English speaker"),
+                  t("features.performance", "24/7 availability"),
+                  t("features.seo", "System integration"),
+                  t("features.cms", "SMS confirmations"),
+                  t("features.support", "Smart Q&A handling"),
+                  t("features.customization", "No long-term contracts"),
+                  t("features.security", "Priority support")
                 ].map((feature, index) => (
                   <div key={index} className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-blue-600 flex-shrink-0" />
@@ -81,7 +93,9 @@ export function Pricing() {
                 className="text-base px-8 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold"
                 asChild
               >
-                <a href="#kontakt">Get started free</a>
+                <a href="#kontakt">
+                  {isHydrated ? t("pricing.getStarted", "Get started free") : "Get started free"}
+                </a>
               </Button>
               <Button 
                 variant="outline" 
@@ -89,7 +103,9 @@ export function Pricing() {
                 className="text-base px-8 h-12 border-2 border-gray-300 text-gray-900 hover:bg-gray-50 rounded-lg font-semibold shadow-lg"
                 asChild
               >
-                <a href="#demo">Try demo</a>
+                <a href="#demo">
+                  {isHydrated ? t("demo.startDemo", "Try demo") : "Try demo"}
+                </a>
               </Button>
             </div>
           </div>
